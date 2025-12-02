@@ -25,3 +25,40 @@ Input: s = "III"
 Output: 3
 Explanation: III = 3.
 '''
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        
+        romanSymbols = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100, 
+            'D': 500,
+            'M': 1000
+        }
+
+        intergerStr = 0
+        for letter in range(len(s)):
+            if letter + 1 < len(s) and romanSymbols[s[letter]] < romanSymbols[s[letter + 1]]:
+                intergerStr -= romanSymbols.get(s[letter])
+            else:
+                intergerStr += romanSymbols.get(s[letter])
+                
+            
+        return intergerStr
+
+
+
+print(Solution().romanToInt(s='III'))
+print(Solution().romanToInt(s='LVIII'))
+print(Solution().romanToInt(s='MCMXCIV'))
+
+'''
+Solution Explanation:
+Essentially, we cgo through each letter once, and ensure we check if
+the next letter value is larger than the current letter value. If it is, 
+we subtract the current letter value from the total integer value and if not,
+we add it to the total integer value.
+'''
