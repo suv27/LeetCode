@@ -36,7 +36,7 @@ class Solution:
                 stack.append(s[item])
             else:
                 if len(stack) != 0:
-                    if brackets.get(stack[len(stack)-1]) == s[item]:
+                    if brackets.get(stack[-1]) == s[item]:
                         stack.pop()
                     else:
                         return False
@@ -46,3 +46,8 @@ class Solution:
         if len(stack) == 0: 
             return True
         return False
+
+print(Solution().isValid("()[]{}"))  # True
+print(Solution().isValid("(]"))      # False
+print(Solution().isValid("([)]"))    # False
+print(Solution().isValid("{[]}"))    # True
